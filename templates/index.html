@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Eventos</h1>
+    <div class="container">
+        {% for evento in eventos %}
+        <div class="evento-card">
+            <img src="{{ url_for('static', filename='img/' + evento.banner) }}" alt="{{ evento.nome }}" class="banner-img">
+            <h2>{{ evento.nome }}</h2>
+            <p>{{ evento.descricao }}</p>
+            <a href="{{ url_for('evento_view', evento_id=evento.id) }}" class="botao-detalhes">Ver detalhes</a>
+        </div>
+        {% endfor %}
+
+        <a href="{{ url_for('palestrantes_view') }}" class="botao-detalhes">Ver Palestrantes</a>
+        <a href="{{ url_for('categorias_view') }}" class="botao-detalhes">Ver Categorias</a>
+    </div>
+</body>
+</html>

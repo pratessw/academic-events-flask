@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ palestrante.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="palestrante-container">
+        <h1>{{ palestrante.nome }}</h1>
+        <img src="{{ url_for('static', filename='img/' + palestrante.foto) }}" alt="{{ palestrante.nome }}" class="palestrante-foto" />
+        <p>{{ palestrante.curriculo }}</p>
+
+        <h3>Eventos deste palestrante:</h3>
+        <ul>
+            {% for evento in eventos %}
+            <li><a href="{{ url_for('evento_view', evento_id=evento.id) }}">{{ evento.nome }}</a> - {{ evento.data }}</li>
+            {% else %}
+            <li>Este palestrante não está vinculado a nenhum evento.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar à página inicial</a>
+    </div>
+</body>
+</html>

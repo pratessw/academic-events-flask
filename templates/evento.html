@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ evento.nome }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="evento-card">
+            <img src="{{ url_for('static', filename='img/' + evento.banner) }}" alt="{{ evento.nome }}" class="banner-img">
+            <h1>{{ evento.nome }}</h1>
+            <p><strong>Data:</strong> {{ evento.data }}</p>
+            <p><strong>Horário:</strong> {{ evento.horario }}</p>
+            <p><strong>Local:</strong> {{ evento.local }}</p>
+            <p>{{ evento.descricao }}</p>
+            <h3>Palestrantes</h3>
+            {% for palestrante in evento.palestrantes %}
+                <p><a href="{{ url_for('palestrante_view', id=palestrante.id) }}">{{ palestrante.nome }}</a></p>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar para Início</a>
+    </div>
+</body>
+</html>

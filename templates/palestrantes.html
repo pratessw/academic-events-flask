@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Palestrantes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Palestrantes</h1>
+    <div class="container">
+        {% for palestrante in palestrantes %}
+        <div class="evento-card">
+            <img src="{{ url_for('static', filename='img/' + palestrante.foto) }}" alt="{{ palestrante.nome }}" class="palestrante-foto">
+            <h2>{{ palestrante.nome }}</h2>
+            <p>{{ palestrante.curriculo }}</p>
+            <a href="{{ url_for('palestrante_view', id=palestrante.id) }}" class="botao-detalhes">Ver mais</a>
+        </div>
+        {% endfor %}
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar para Início</a>
+    </div>
+</body>
+</html>
